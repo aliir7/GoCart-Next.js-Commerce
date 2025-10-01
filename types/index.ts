@@ -1,8 +1,10 @@
+import { StaticImageData } from "next/image";
+
 export type User = {
   id: string;
   name: string;
   email: string;
-  image?: string;
+  image?: string | StaticImageData;
   cart?: Cart;
 };
 
@@ -18,11 +20,12 @@ export type Store = {
   description: string;
   username: string;
   address: string;
-  status: "approved";
+  status: "pending" | "rejected" | "approved" | string;
   isActive: boolean;
-  logo: string;
+  logo: string | StaticImageData;
   email: string;
   contact: string;
+  createdAt: string;
   updatedAt: string;
   user?: User;
 };
@@ -36,7 +39,7 @@ export type Product = {
   images: string[];
   storeId: string;
   inStock: boolean;
-  store: Store[];
+  store: Store;
   category: string;
   rating: Rating[];
   createdAt: string;
@@ -77,4 +80,30 @@ export type Coupon = {
   isPublic: boolean;
   expiresAt: string;
   createdAt: string;
+};
+
+export type Order = {
+  id: string;
+  total: number;
+  status: "PENDING" | "DELIVERED";
+  userId: string;
+  storeId: string;
+  addressId: string;
+  isPaid: false;
+  paymentMethod: string;
+  createdAt: string;
+  updatedAt: string;
+  isCouponUsed: boolean;
+  coupon: Coupon;
+  orderItems: OrderItem[];
+  address: Address;
+  user: User;
+};
+
+export type OrderItem = {
+  orderId: string;
+  productId: string;
+  quantity: number;
+  price: number;
+  product: Product;
 };

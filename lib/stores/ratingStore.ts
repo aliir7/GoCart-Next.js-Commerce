@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 type Rating = {
   productId: string;
+  orderId?: string;
   value: number;
 };
 
