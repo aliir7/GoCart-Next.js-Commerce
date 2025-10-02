@@ -20,6 +20,7 @@ import { ClockFadingIcon, HeadsetIcon, SendIcon } from "lucide-react";
 import profile_pic1 from "./profile_pic1.jpg";
 import profile_pic2 from "./profile_pic2.jpg";
 import profile_pic3 from "./profile_pic3.jpg";
+import { Coupon, Order, User } from "@/types";
 
 export const assets = {
   upload_area,
@@ -399,11 +400,11 @@ export const addressDummyData = {
   createdAt: "Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)",
 };
 
-export const couponDummyData = [
+export const couponDummyData: Coupon[] = [
   {
     code: "NEW20",
     description: "20% Off for New Users",
-    discount: 20,
+    discountPercent: 20,
     forNewUser: true,
     forMember: false,
     isPublic: false,
@@ -413,7 +414,7 @@ export const couponDummyData = [
   {
     code: "NEW10",
     description: "10% Off for New Users",
-    discount: 10,
+    discountPercent: 10,
     forNewUser: true,
     forMember: false,
     isPublic: false,
@@ -423,7 +424,7 @@ export const couponDummyData = [
   {
     code: "OFF20",
     description: "20% Off for All Users",
-    discount: 20,
+    discountPercent: 20,
     forNewUser: false,
     forMember: false,
     isPublic: false,
@@ -433,7 +434,7 @@ export const couponDummyData = [
   {
     code: "OFF10",
     description: "10% Off for All Users",
-    discount: 10,
+    discountPercent: 10,
     forNewUser: false,
     forMember: false,
     isPublic: false,
@@ -443,7 +444,7 @@ export const couponDummyData = [
   {
     code: "PLUS10",
     description: "20% Off for Members",
-    discount: 10,
+    discountPercent: 10,
     forNewUser: false,
     forMember: true,
     isPublic: false,
@@ -452,15 +453,15 @@ export const couponDummyData = [
   },
 ];
 
-export const dummyUserData = {
+export const dummyUserData: User = {
   id: "user_31dQbH27HVtovbs13X2cmqefddM",
   name: "GreatStack",
   email: "greatstack@example.com",
   image: gs_logo,
-  cart: {},
+  cart: undefined,
 };
 
-export const orderDummyData = [
+export const orderDummyData: Order[] = [
   {
     id: "cmemm75h5001jtat89016h1p3",
     total: 214.2,
@@ -473,7 +474,7 @@ export const orderDummyData = [
     createdAt: "2025-08-22T09:15:03.929Z",
     updatedAt: "2025-08-22T09:15:50.723Z",
     isCouponUsed: true,
-    coupon: dummyRatingsData[2],
+    coupon: couponDummyData[2],
     orderItems: [
       {
         orderId: "cmemm75h5001jtat89016h1p3",

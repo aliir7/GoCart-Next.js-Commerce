@@ -6,7 +6,7 @@ import Link from "next/link";
 type PageTitleProps = {
   heading: string;
   text: string;
-  path: string;
+  path?: string;
   linkText: string;
 };
 

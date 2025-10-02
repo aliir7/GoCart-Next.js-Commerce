@@ -5,15 +5,15 @@ import AddressModal from "../AddressModal";
 import { PlusIcon, SquarePenIcon, XIcon } from "lucide-react";
 import useAddressStore from "@/lib/stores/addressStore";
 import toast from "react-hot-toast";
-import { Address, Coupon, Order } from "@/types";
-import { useRouter } from "next/router";
+import { Address, Cart, Coupon } from "@/types";
+import { useRouter } from "next/navigation";
 
 type OrderSummaryProps = {
-  items: Order[];
+  items: Cart[];
   totalPrice: number;
 };
 
-function OrderSummary({ items, totalPrice }: OrderSummaryProps) {
+function OrderSummary({ totalPrice }: OrderSummaryProps) {
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
 
   const router = useRouter();
@@ -34,6 +34,13 @@ function OrderSummary({ items, totalPrice }: OrderSummaryProps) {
     e.preventDefault();
 
     router.push("/orders");
+  };
+
+  // select address handler
+  const handleSelectedAddress = (e: ChangeEvent<HTMLSelectElement>) => {
+    const id = e.target.value;
+    if (!id) return setSelectedAddress(null);
+    setSelectedAddress(addressList.find((addr) => addr.id === id) ?? null);
   };
 
   return (
@@ -85,7 +92,7 @@ function OrderSummary({ items, totalPrice }: OrderSummaryProps) {
               <select
                 className="border border-slate-400 p-2 w-full my-3 outline-none rounded"
                 onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                  setSelectedAddress(addressList[e.target.value])
+                  handleSelectedAddress(e)
                 }
               >
                 <option value="">Select Address</option>

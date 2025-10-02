@@ -5,12 +5,7 @@ export type User = {
   name: string;
   email: string;
   image?: string | StaticImageData;
-  cart?: Cart;
-};
-
-export type Cart = {
-  cartItems: string;
-  total: number;
+  cart?: Cart | null | undefined;
 };
 
 export type Store = {
@@ -33,17 +28,21 @@ export type Store = {
 export type Product = {
   id: string;
   name: string;
-  description: string;
-  mrp: number;
+  description?: string;
+  mrp?: number;
   price: number;
-  images: string[];
-  storeId: string;
-  inStock: boolean;
+  images: string[] | string | StaticImageData[];
+  storeId?: string;
+  inStock?: boolean;
   store: Store;
   category: string;
   rating: Rating[];
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
+export type Cart = Product & {
+  quantity: number;
 };
 
 export type Rating = {
@@ -51,7 +50,7 @@ export type Rating = {
   rating: number;
   review: string;
   user: Pick<User, "name" | "image">;
-  productId: "prod_1";
+  productId: string;
   createdAt: string;
   updatedAt: string;
   product: Pick<Product, "name" | "category" | "id">;
@@ -85,14 +84,14 @@ export type Coupon = {
 export type Order = {
   id: string;
   total: number;
-  status: "PENDING" | "DELIVERED";
+  status: string;
   userId: string;
   storeId: string;
   addressId: string;
   isPaid: false;
   paymentMethod: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   isCouponUsed: boolean;
   coupon: Coupon;
   orderItems: OrderItem[];

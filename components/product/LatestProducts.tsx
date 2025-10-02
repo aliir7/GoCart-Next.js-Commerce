@@ -4,7 +4,7 @@ import Title from "../Title";
 import ProductCard from "./ProductCard";
 import useProductStore from "@/lib/stores/productStore";
 
-function LatestProduct() {
+function LatestProducts() {
   const displayQuantity = 4;
   const { products } = useProductStore();
 
@@ -20,7 +20,11 @@ function LatestProduct() {
       <div className="mt-12 grid grid-cols-2 sm:flex flex-wrap gap-6 justify-between">
         {products
           .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt!).getTime() -
+              new Date(a.createdAt!).getTime()
+          )
           .slice(0, displayQuantity)
           .map((product, index) => (
             <ProductCard key={index} product={product} />
@@ -30,4 +34,4 @@ function LatestProduct() {
   );
 }
 
-export default LatestProduct;
+export default LatestProducts;
