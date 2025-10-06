@@ -2,7 +2,7 @@
 
 import PageTitle from "@/components/PageTitle";
 import { useEffect, useState } from "react";
-import OrderItem from "@/components/order/OrderItem";
+// import OrderItem from "@/components/order/OrderItem";
 import { orderDummyData } from "@/assets/assets";
 import { Order } from "@/types";
 
@@ -32,11 +32,11 @@ export default function Orders() {
                 <th className="text-left">Status</th>
               </tr>
             </thead>
-            <tbody>
+            {/* <tbody>
               {orders.map((order) => (
                 <OrderItem order={order} key={order.id} />
               ))}
-            </tbody>
+            </tbody> */}
           </table>
         </div>
       ) : (
